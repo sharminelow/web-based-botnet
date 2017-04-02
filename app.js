@@ -26,7 +26,7 @@ var createLog = function(req) {
 
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
+    //res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -37,6 +37,7 @@ app.use(express.static('static'));
 app.use(allowCrossDomain);
 
 app.get('/', function (req, res) {
+  //console.log(req);
   var data = createLog(req);
   data['via'] = 'jquery';
   io.emit('attack', data);
@@ -51,4 +52,12 @@ app.get('/cat', function (req, res) {
   io.emit('attack', data);
   
   res.sendFile(__dirname + '/static/cat.jpg');
+});
+
+app.get('/datauri', function(req, res) {
+  res.sendFile(__dirname + '/datauri.html');
+});
+
+app.get('/draggable', function(req, res) {
+  res.sendFile(__dirname + '/draggable.html');
 });
